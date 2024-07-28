@@ -12,14 +12,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set up Git
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "Sowju"
+
+      - name: Check out with PAT
+        env:
+          ACTIONS_TOKEN: ${{ secrets.COMMIT_PRO }}
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.COMMIT_PRO }}@github.com/sowjumn/go_pro.git
+          git fetch origin
+
       - name: Make changes
         run: |
           echo "Update on $(date)" >> update.txt
 
       - name: Commit changes
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
           git commit -m "Automated commit at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
