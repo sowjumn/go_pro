@@ -17,21 +17,14 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "Sowju"
 
-      - name: Check out with PAT
+      - name: Check out with PAT & Commit
         env:
           ACTIONS_TOKEN: ${{ secrets.COMMIT_PRO }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git remote set-url origin https://x-access-token:${{ secrets.COMMIT_PRO }}@github.com/sowjumn/go_pro.git
           git fetch origin
-
-      - name: Make changes
-        run: |
           echo "Update on $(date)" >> update.txt
-
-      - name: Commit changes
-        run: |
           git add .
           git commit -m "Automated commit at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
