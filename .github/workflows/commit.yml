@@ -19,10 +19,9 @@ jobs:
 
       - name: Check out with PAT & Commit
         env:
-          ACTIONS_TOKEN: ${{ secrets.COMMIT_PRO }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
         run: |
-          git remote set-url origin https://x-access-token:${{ secrets.COMMIT_PRO }}@github.com/sowjumn/go_pro.git
+          git remote set-url origin https://x-access-token:${{ secrets.ACTIONS_TOKEN }}@github.com/sowjumn/go_pro.git
           git fetch origin
           echo "Update on $(date)" >> update.txt
           git add .
