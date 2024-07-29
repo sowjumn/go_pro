@@ -26,4 +26,4 @@ jobs:
           echo "Update on $(date)" >> update.txt
           git add .
           git commit -m "Automated commit at $(date -u +%Y-%m-%dT%H:%M:%SZ)"
-          git push
+          git push origin master
