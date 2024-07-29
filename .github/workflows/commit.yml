@@ -2,7 +2,7 @@ name: Create Commit
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 0 * * *"
 
 jobs:
   commit:
